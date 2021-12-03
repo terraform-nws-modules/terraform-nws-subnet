@@ -12,8 +12,12 @@ variable "vpc_id" {
   type        = string
 }
 
-
 variable "domain" {
   description = "Your network domain"
   type        = string
+}
+
+variable "public" {
+  description = "Should this subnet be publicly available ?"
+  type        = bool
 }

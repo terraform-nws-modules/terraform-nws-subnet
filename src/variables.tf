@@ -10,6 +10,11 @@ variable "cidr" {
   description = "Your network CIDR"
   type        = list(string)
 }
+
+variable "public" {
+  description = "Should this subnet be publicly available ?"
+  type        = bool
+}
 # ---------------------------------------------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
 # These parameters have reasonable defaults.
@@ -18,10 +23,6 @@ variable "zone" {
   description = "Your zone name"
   type        = string
   default     = "ru-msk-0"
-}
-variable "network_offering" {
-  type    = string
-  default = "DefaultIsolatedNetworkOfferingForVpcNetworks"
 }
 variable "vpc_id" {
   description = "Your VPC UUID. Null for standalone networks without a VPC"

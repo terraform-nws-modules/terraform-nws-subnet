@@ -11,10 +11,10 @@ terraform {
 
 resource "nws_network" "net" {
   count            = length(var.name)
+  zone             = var.zone
   name             = var.name[count.index]
   cidr             = var.cidr[count.index]
   network_domain   = var.domain
   vpc_id           = var.vpc_id
-  network_offering = var.network_offering
-  zone             = var.zone
+  network_offering = var.public ? "DefaultSharedNetworkOffering" : "DefaultIsolatedNetworkOfferingForVpcNetworks"
 }

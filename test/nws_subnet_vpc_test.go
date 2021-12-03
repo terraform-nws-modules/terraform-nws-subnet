@@ -16,16 +16,19 @@ func TestNwsSubnetVpcExample(t *testing.T) {
 		name   []string
 		cidr   []string
 		domain []string
+		public []bool
 	}{
-		{
-			[]string{genName()},
-			[]string{"10.0.1.0/24"},
-			[]string{"my.local"},
-		},
+		// {
+		// 	[]string{genName()},
+		// 	[]string{"10.0.1.0/24"},
+		// 	[]string{"my.local"},
+		// 	[]bool{false},
+		// },
 		{
 			[]string{genName(), genName()},
 			[]string{"10.0.1.0/30", "10.0.1.100/30"},
 			[]string{"my.local", "my.local"},
+			[]bool{false, false},
 		},
 	}
 
@@ -33,13 +36,14 @@ func TestNwsSubnetVpcExample(t *testing.T) {
 		cfg := testCase
 
 		terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-			TerraformDir: "../examples/vpc-single-net",
+			TerraformDir: "../examples/vpc-single-private",
 			// Variables to pass to our Terraform code using -var options
 			Vars: map[string]interface{}{
 				"name":   cfg.name,
 				"cidr":   cfg.cidr,
 				"domain": cfg.domain[0],
 				"vpc_id": vpc_id,
+				"public": cfg.public[0],
 			},
 		})
 
