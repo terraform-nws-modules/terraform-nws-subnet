@@ -10,8 +10,9 @@ terraform {
 }
 
 resource "nws_network" "net" {
-  name             = var.name
-  cidr             = var.cidr
+  count            = length(var.name)
+  name             = var.name[count.index]
+  cidr             = var.cidr[count.index]
   network_domain   = var.domain
   vpc_id           = var.vpc_id
   network_offering = var.network_offering

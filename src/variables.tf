@@ -4,11 +4,11 @@
 # ---------------------------------------------------------------------------------------------------------------------
 variable "name" {
   description = "Your network name"
-  type        = string
+  type        = list(string)
 }
 variable "cidr" {
   description = "Your network CIDR"
-  type        = string
+  type        = list(string)
 }
 # ---------------------------------------------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
