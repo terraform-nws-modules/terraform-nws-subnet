@@ -17,10 +17,8 @@ func validate(t *testing.T, opts *terraform.Options, domain string) {
 
 	act_domain := trimBrackets(out_domain)
 
-	assert.Equal(t, domain, act_domain)
 	assert.NotEmpty(t, id)
-	assert.NotNil(t, id)
-
+	assert.Equal(t, domain, act_domain)
 }
 
 // Validation helpers
