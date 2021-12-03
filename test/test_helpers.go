@@ -11,14 +11,13 @@ import (
 )
 
 // validates Terraform output versus expected
-func validate(t *testing.T, opts *terraform.Options, domain string) {
+func validate(t *testing.T, opts *terraform.Options, domain []string) {
 	id := terraform.Output(t, opts, "id")
 	out_domain := terraform.Output(t, opts, "domain")
-
-	act_domain := trimBrackets(out_domain)
+	act_domain := strings.Fields(trimBrackets(out_domain))
 
 	assert.NotEmpty(t, id)
-	assert.Equal(t, domain, act_domain)
+	assert.ElementsMatch(t, domain, act_domain)
 }
 
 // Validation helpers

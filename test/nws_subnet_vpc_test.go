@@ -7,34 +7,45 @@ import (
 )
 
 func TestNwsSubnetVpcExample(t *testing.T) {
-	t.Parallel()
 
 	const (
-		domain = "my.local"
 		vpc_id = "db0b0f50-19b8-4d62-8f7d-c196a7353f4d"
 	)
 
-	cfg := struct {
-		name []string
-		cidr []string
+	testCases := []struct {
+		name   []string
+		cidr   []string
+		domain []string
 	}{
-		[]string{genName()},
-		[]string{"10.0.1.0/24"},
+		{
+			[]string{genName()},
+			[]string{"10.0.1.0/24"},
+			[]string{"my.local"},
+		},
+		{
+			[]string{genName(), genName()},
+			[]string{"10.0.1.0/30", "10.0.1.100/30"},
+			[]string{"my.local", "my.local"},
+		},
 	}
 
-	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "../examples/vpc-single-net",
-		// Variables to pass to our Terraform code using -var options
-		Vars: map[string]interface{}{
-			"name":   cfg.name,
-			"cidr":   cfg.cidr,
-			"domain": domain,
-			"vpc_id": vpc_id,
-		},
-	})
+	for _, testCase := range testCases {
+		cfg := testCase
 
-	defer terraform.Destroy(t, terraformOptions)
-	terraform.InitAndApply(t, terraformOptions)
+		terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
+			TerraformDir: "../examples/vpc-single-net",
+			// Variables to pass to our Terraform code using -var options
+			Vars: map[string]interface{}{
+				"name":   cfg.name,
+				"cidr":   cfg.cidr,
+				"domain": cfg.domain[0],
+				"vpc_id": vpc_id,
+			},
+		})
 
-	validate(t, terraformOptions, domain)
+		defer terraform.Destroy(t, terraformOptions)
+		terraform.InitAndApply(t, terraformOptions)
+
+		validate(t, terraformOptions, cfg.domain)
+	}
 }
