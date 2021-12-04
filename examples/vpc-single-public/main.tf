@@ -14,6 +14,7 @@ module "subnet" {
 
   name   = var.name
   cidr   = var.cidr
+  vpc_id = var.vpc_id
   domain = var.domain
   public = var.public
 }

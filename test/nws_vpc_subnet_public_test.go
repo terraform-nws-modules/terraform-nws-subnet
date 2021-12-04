@@ -36,7 +36,7 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 		cfg := testCase
 
 		terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-			TerraformDir: "../examples/vpc-single-private",
+			TerraformDir: "../examples/vpc-single-public",
 			// Variables to pass to our Terraform code using -var options
 			Vars: map[string]interface{}{
 				"name":   cfg.name,
