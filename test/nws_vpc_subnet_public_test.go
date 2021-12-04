@@ -6,10 +6,10 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestNwsSubnetVpcExample(t *testing.T) {
+func TestNwsSubnetPublicExample(t *testing.T) {
 
 	const (
-		vpc_id = "79eeb029-e396-4d9d-878a-338f8da07cb8"
+		vpcID = "79eeb029-e396-4d9d-878a-338f8da07cb8"
 	)
 
 	testCases := []struct {
@@ -20,16 +20,16 @@ func TestNwsSubnetVpcExample(t *testing.T) {
 	}{
 		{
 			[]string{genName()},
-			[]string{"10.0.1.50/30"},
+			[]string{"10.0.1.100/30"},
 			[]string{"test.local"},
-			[]bool{false},
+			[]bool{true},
 		},
-		{
-			[]string{genName(), genName()},
-			[]string{"10.0.1.0/30", "10.0.1.100/30"},
-			[]string{"test.local", "test.local"},
-			[]bool{false, false},
-		},
+		// {
+		// 	[]string{genName(), genName()},
+		// 	[]string{"10.0.1.0/30", "10.0.1.100/30"},
+		// 	[]string{"test.local", "test.local"},
+		// 	[]bool{false, false},
+		// },
 	}
 
 	for _, testCase := range testCases {
@@ -42,7 +42,7 @@ func TestNwsSubnetVpcExample(t *testing.T) {
 				"name":   cfg.name,
 				"cidr":   cfg.cidr,
 				"domain": cfg.domain[0],
-				"vpc_id": vpc_id,
+				"vpc_id": vpcID,
 				"public": cfg.public[0],
 			},
 		})

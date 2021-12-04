@@ -1,4 +1,4 @@
 name   = ["mynet-public"]
-cidr   = ["10.0.1.0/24"]
-domain = "my.local"
+cidr   = ["10.0.1.0/30"]
+domain = "test.local"
 public = true

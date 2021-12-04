@@ -12,10 +12,12 @@ import (
 // validates Terraform output versus expected
 func validate(t *testing.T, opts *terraform.Options, domain []string) {
 	id := terraform.Output(t, opts, "id")
+	public := terraform.Output(t, opts, "public")
 
 	fmt.Println(">>>>> Output IDs: ", id)
 
 	assert.NotEmpty(t, id)
+	assert.Equal(t, "false", public)
 }
 
 func genName() string {
