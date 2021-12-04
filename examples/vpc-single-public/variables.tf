@@ -21,3 +21,8 @@ variable "public" {
   description = "Should this subnet be publicly available ?"
   type        = bool
 }
+
+variable "acl_allowed_port_list" {
+  description = "Port list for allowed ingress traffic"
+  type        = list(string)
+}

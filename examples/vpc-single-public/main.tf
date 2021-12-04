@@ -17,4 +17,6 @@ module "subnet" {
   vpc_id = var.vpc_id
   domain = var.domain
   public = var.public
+
+  acl_allowed_port_list = var.acl_allowed_port_list
 }

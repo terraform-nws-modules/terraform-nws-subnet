@@ -18,3 +18,22 @@ resource "nws_network" "net" {
   vpc_id           = var.vpc_id
   network_offering = "DefaultIsolatedNetworkOfferingForVpcNetworks"
 }
+
+resource "nws_network_acl" "acl" {
+  count  = var.public ? 1 : 0
+  name   = "acl-public"
+  vpc_id = var.vpc_id
+}
+
+resource "nws_network_acl_rule" "rule" {
+  count  = var.public ? 1 : 0
+  acl_id = nws_network_acl.acl[0].id
+
+  rule {
+    action       = "allow"
+    protocol     = "tcp"
+    cidr_list    = var.acl_allowed_cidr_list
+    ports        = var.acl_allowed_port_list
+    traffic_type = "ingress"
+  }
+}

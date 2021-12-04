@@ -32,6 +32,19 @@ variable "vpc_id" {
   default     = null
 }
 variable "domain" {
-  type    = string
-  default = "my.local"
+  description = "Your VPC domain name, e.g my.local"
+  type        = string
+  default     = "my.local"
+}
+
+variable "acl_allowed_cidr_list" {
+  description = "CIDR list for allowed ingress traffic"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "acl_allowed_port_list" {
+  description = "Port list for allowed ingress traffic"
+  type        = list(string)
+  default     = ["80", "31000-31004"]
 }
