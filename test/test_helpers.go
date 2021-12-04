@@ -12,8 +12,8 @@ import (
 type TestCaseT struct {
 	name          []string
 	cidr          []string
-	domain        []string
-	public        []bool
+	domain        string
+	public        bool
 	acl_port_list []string
 }
 

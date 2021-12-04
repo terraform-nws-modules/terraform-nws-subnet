@@ -16,9 +16,16 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 		{
 			[]string{genName()},
 			[]string{"10.0.1.100/30"},
-			[]string{"test.local"},
-			[]bool{true},
+			"test.local",
+			true,
 			[]string{"80", "31000-31010"},
+		},
+		{
+			[]string{genName(), genName()},
+			[]string{"10.0.1.0/30", "10.0.1.10/30"},
+			"test.local",
+			true,
+			[]string{"80", "31000-31010", "32000-32010"},
 		},
 	}
 
@@ -31,9 +38,9 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 			Vars: map[string]interface{}{
 				"name":   cfg.name,
 				"cidr":   cfg.cidr,
-				"domain": cfg.domain[0],
+				"domain": cfg.domain,
 				"vpc_id": vpcID,
-				"public": cfg.public[0],
+				"public": cfg.public,
 			},
 		})
 
