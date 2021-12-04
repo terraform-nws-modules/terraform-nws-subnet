@@ -9,7 +9,7 @@ import (
 func TestNwsSubnetVpcExample(t *testing.T) {
 
 	const (
-		vpc_id = "db0b0f50-19b8-4d62-8f7d-c196a7353f4d"
+		vpc_id = "79eeb029-e396-4d9d-878a-338f8da07cb8"
 	)
 
 	testCases := []struct {
@@ -18,16 +18,16 @@ func TestNwsSubnetVpcExample(t *testing.T) {
 		domain []string
 		public []bool
 	}{
-		// {
-		// 	[]string{genName()},
-		// 	[]string{"10.0.1.0/24"},
-		// 	[]string{"my.local"},
-		// 	[]bool{false},
-		// },
+		{
+			[]string{genName()},
+			[]string{"10.0.1.50/30"},
+			[]string{"test.local"},
+			[]bool{false},
+		},
 		{
 			[]string{genName(), genName()},
 			[]string{"10.0.1.0/30", "10.0.1.100/30"},
-			[]string{"my.local", "my.local"},
+			[]string{"test.local", "test.local"},
 			[]bool{false, false},
 		},
 	}
