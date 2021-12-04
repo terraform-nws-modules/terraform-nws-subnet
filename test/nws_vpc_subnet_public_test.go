@@ -12,24 +12,14 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 		vpcID = "79eeb029-e396-4d9d-878a-338f8da07cb8"
 	)
 
-	testCases := []struct {
-		name   []string
-		cidr   []string
-		domain []string
-		public []bool
-	}{
+	testCases := []TestCaseT{
 		{
 			[]string{genName()},
 			[]string{"10.0.1.100/30"},
 			[]string{"test.local"},
 			[]bool{true},
+			[]string{"80", "31000-31010"},
 		},
-		// {
-		// 	[]string{genName(), genName()},
-		// 	[]string{"10.0.1.0/30", "10.0.1.100/30"},
-		// 	[]string{"test.local", "test.local"},
-		// 	[]bool{false, false},
-		// },
 	}
 
 	for _, testCase := range testCases {
@@ -50,6 +40,6 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 		defer terraform.Destroy(t, terraformOptions)
 		terraform.InitAndApply(t, terraformOptions)
 
-		validatePublic(t, terraformOptions, cfg.domain)
+		validatePublic(t, terraformOptions)
 	}
 }
