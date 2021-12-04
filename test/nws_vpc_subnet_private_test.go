@@ -18,18 +18,18 @@ func TestNwsSubnetPrivateExample(t *testing.T) {
 		domain []string
 		public []bool
 	}{
-		{
-			[]string{genName()},
-			[]string{"10.0.1.20/30"},
-			[]string{"test.local"},
-			[]bool{false},
-		},
-		{
-			[]string{genName(), genName()},
-			[]string{"10.0.1.0/30", "10.0.1.10/30"},
-			[]string{"test.local", "test.local"},
-			[]bool{false, false},
-		},
+		// {
+		// 	[]string{genName()},
+		// 	[]string{"10.0.1.20/30"},
+		// 	[]string{"test.local"},
+		// 	[]bool{false},
+		// },
+		// {
+		// 	[]string{genName(), genName()},
+		// 	[]string{"10.0.1.0/30", "10.0.1.10/30"},
+		// 	[]string{"test.local", "test.local"},
+		// 	[]bool{false, false},
+		// },
 	}
 
 	for _, testCase := range testCases {
@@ -50,6 +50,6 @@ func TestNwsSubnetPrivateExample(t *testing.T) {
 		defer terraform.Destroy(t, terraformOptions)
 		terraform.InitAndApply(t, terraformOptions)
 
-		validate(t, terraformOptions, cfg.domain)
+		validatePrivate(t, terraformOptions, cfg.domain)
 	}
 }

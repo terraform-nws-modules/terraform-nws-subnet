@@ -50,6 +50,6 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 		defer terraform.Destroy(t, terraformOptions)
 		terraform.InitAndApply(t, terraformOptions)
 
-		validate(t, terraformOptions, cfg.domain)
+		validatePublic(t, terraformOptions, cfg.domain)
 	}
 }

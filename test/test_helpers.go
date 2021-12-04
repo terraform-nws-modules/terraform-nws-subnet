@@ -10,7 +10,7 @@ import (
 )
 
 // validates Terraform output versus expected
-func validate(t *testing.T, opts *terraform.Options, domain []string) {
+func validatePrivate(t *testing.T, opts *terraform.Options, domain []string) {
 	id := terraform.Output(t, opts, "id")
 	public := terraform.Output(t, opts, "public")
 
@@ -18,6 +18,16 @@ func validate(t *testing.T, opts *terraform.Options, domain []string) {
 
 	assert.NotEmpty(t, id)
 	assert.Equal(t, "false", public)
+}
+
+func validatePublic(t *testing.T, opts *terraform.Options, domain []string) {
+	id := terraform.Output(t, opts, "id")
+	public := terraform.Output(t, opts, "public")
+
+	fmt.Println(">>>>> Output IDs: ", id)
+
+	assert.NotEmpty(t, id)
+	assert.Equal(t, "true", public)
 }
 
 func genName() string {

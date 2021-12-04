@@ -15,6 +15,6 @@ resource "nws_network" "net" {
   network_domain   = var.domain
   name             = var.name[count.index]
   cidr             = var.cidr[count.index]
-  vpc_id           = var.public ? null : var.vpc_id
-  network_offering = var.public ? "DefaultSharedNetworkOffering" : "DefaultIsolatedNetworkOfferingForVpcNetworks"
+  vpc_id           = var.vpc_id
+  network_offering = "DefaultIsolatedNetworkOfferingForVpcNetworks"
 }
