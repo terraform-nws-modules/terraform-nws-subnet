@@ -12,7 +12,7 @@ func TestNwsSubnetPrivateExample(t *testing.T) {
 		vpcID = "79eeb029-e396-4d9d-878a-338f8da07cb8"
 	)
 
-	testCases := []TestCaseT{
+	testCases := []testCaseT{
 		{
 			[]string{genName()},
 			[]string{"10.0.1.100/30"},
@@ -38,7 +38,7 @@ func TestNwsSubnetPrivateExample(t *testing.T) {
 			Vars: map[string]interface{}{
 				"name":   cfg.name,
 				"cidr":   cfg.cidr,
-				"domain": cfg.domain[0],
+				"domain": cfg.domain,
 				"vpc_id": vpcID,
 				"public": cfg.public,
 			},

@@ -12,7 +12,7 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 		vpcID = "79eeb029-e396-4d9d-878a-338f8da07cb8"
 	)
 
-	testCases := []TestCaseT{
+	testCases := []testCaseT{
 		{
 			[]string{genName()},
 			[]string{"10.0.1.100/30"},
