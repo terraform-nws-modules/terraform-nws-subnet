@@ -4,7 +4,7 @@ output "subnet_id" {
 }
 
 output "subnet_public" {
-  description = "Network domain of the new subnet"
+  description = "Is this subnet public ?"
   value       = var.public
 }
 

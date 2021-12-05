@@ -8,10 +8,6 @@ import (
 
 func TestNwsSubnetPublicExample(t *testing.T) {
 
-	const (
-		vpcID = "79eeb029-e396-4d9d-878a-338f8da07cb8"
-	)
-
 	testCases := []testCaseT{
 		{
 			[]string{genName()},

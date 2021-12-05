@@ -9,6 +9,10 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const (
+	vpcID = "6d629253-e74e-4e57-9fd9-8d4969f60723"
+)
+
 type testCaseT struct {
 	name        []string
 	cidr        []string
