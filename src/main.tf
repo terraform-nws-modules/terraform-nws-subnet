@@ -10,7 +10,7 @@ terraform {
 }
 
 resource "nws_network" "net" {
-  count            = length(var.name) > 0 ? length(var.name) : 0
+  count            = var.name != null ? length(var.name) : 0
   zone             = var.zone
   network_domain   = var.domain
   name             = var.name[count.index]
