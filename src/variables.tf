@@ -51,5 +51,5 @@ variable "acl_allowed_cidr_list" {
 variable "acl_allowed_port_list" {
   description = "Port list for allowed ingress traffic"
   type        = list(string)
-  default     = null
+  default     = ["80"]
 }
