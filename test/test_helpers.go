@@ -10,7 +10,8 @@ import (
 )
 
 const (
-	vpcID = "6d629253-e74e-4e57-9fd9-8d4969f60723"
+	vpcID  = "75922dcf-daff-4a39-8ed1-4820bf12f134"
+	domain = "my.local"
 )
 
 type testCaseT struct {

@@ -37,8 +37,13 @@ variable "domain" {
   default     = "my.local"
 }
 
+variable "acl_name" {
+  description = "Your ACL name"
+  default     = "acl-public"
+}
+
 variable "acl_allowed_cidr_list" {
-  description = "CIDR list for allowed ingress traffic"
+  description = "CIDR list for allowed ingress traffic. Allow all ingress traffic by default"
   type        = list(string)
   default     = ["0.0.0.0/0"]
 }
@@ -46,5 +51,5 @@ variable "acl_allowed_cidr_list" {
 variable "acl_allowed_port_list" {
   description = "Port list for allowed ingress traffic"
   type        = list(string)
-  default     = ["80", "31000-31004"]
+  default     = null
 }

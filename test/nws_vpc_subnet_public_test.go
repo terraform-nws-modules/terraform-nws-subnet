@@ -12,14 +12,14 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 		{
 			[]string{genName()},
 			[]string{"10.0.1.100/30"},
-			"test.local",
+			domain,
 			true,
 			[]string{"80", "31000-31010"},
 		},
 		{
 			[]string{genName(), genName()},
 			[]string{"10.0.1.0/30", "10.0.1.10/30"},
-			"test.local",
+			domain,
 			true,
 			[]string{"80", "31000-31010", "32000-32010"},
 		},
