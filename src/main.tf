@@ -15,8 +15,8 @@ resource "nws_network" "net" {
   network_domain   = var.domain
   name             = var.name[count.index]
   cidr             = var.cidr[count.index]
-  vpc_id           = var.vpc_id
-  network_offering = "DefaultIsolatedNetworkOfferingForVpcNetworks"
+  vpc_id           = var.has_vpc && var.vpc_id != null ? var.vpc_id : null
+  network_offering = var.has_vpc ? "DefaultIsolatedNetworkOfferingForVpcNetworks" : "DefaultIsolatedNetworkOfferingWithSourceNatService"
 }
 
 // Create ACL resources for Public networks only

@@ -1,11 +1,16 @@
 output "subnet_id" {
-  description = "UUID for this subnet"
+  description = "UUID list for these subnets"
   value       = nws_network.net[*].id
 }
 
 output "subnet_public" {
-  description = "Network domain for this subnet"
+  description = "Should this subnet be public ?"
   value       = var.public
+}
+
+output "subnet_has_vpc" {
+  description = "Does this subnect belong to a VPC ?"
+  value       = var.has_vpc
 }
 
 output "subnet_acl_id" {

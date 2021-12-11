@@ -8,6 +8,11 @@ output "subnet_public" {
   value       = var.public
 }
 
+output "subnet_has_vpc" {
+  description = "Does this subnect belong to a VPC ?"
+  value       = var.has_vpc
+}
+
 output "subnet_acl_id" {
   description = "ACL id for this subnet"
   value       = module.subnet.subnet_acl_id

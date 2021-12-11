@@ -21,3 +21,8 @@ variable "public" {
   description = "Should this subnet be publicly available ?"
   type        = bool
 }
+
+variable "has_vpc" {
+  description = "Should this subnet belong to a VPC?"
+  type        = bool
+}

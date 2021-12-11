@@ -26,6 +26,12 @@ variable "public" {
   default     = false
 }
 
+variable "has_vpc" {
+  description = "Should this subnet belong to a VPC?"
+  type        = bool
+  default     = false
+}
+
 variable "vpc_id" {
   description = "Your VPC UUID. Null for standalone networks without a VPC"
   type        = string
