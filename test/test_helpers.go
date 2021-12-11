@@ -24,30 +24,46 @@ type testCaseT struct {
 }
 
 // validates Terraform output versus expected
-func validatePrivate(t *testing.T, opts *terraform.Options) {
+func validateVpcPrivate(t *testing.T, opts *terraform.Options) {
 	subnetID := terraform.Output(t, opts, "subnet_id")
 	subnetACLID := terraform.Output(t, opts, "subnet_acl_id")
 	subnetACLRuleID := terraform.Output(t, opts, "subnet_acl_rule_id")
 	public := terraform.Output(t, opts, "subnet_public")
+	hasVpc := terraform.Output(t, opts, "subnet_has_vpc")
 
 	assert.NotEmpty(t, subnetID)
 	assert.Equal(t, "[]", subnetACLID)
 	assert.Equal(t, "[]", subnetACLRuleID)
 	assert.Equal(t, "false", public)
+	assert.Equal(t, "true", hasVpc)
 }
 
-func validatePublic(t *testing.T, opts *terraform.Options) {
+func validateVpcPublic(t *testing.T, opts *terraform.Options) {
 	subnetID := terraform.Output(t, opts, "subnet_id")
 	subnetACLID := terraform.Output(t, opts, "subnet_acl_id")
 	subnetACLRuleID := terraform.Output(t, opts, "subnet_acl_rule_id")
 	public := terraform.Output(t, opts, "subnet_public")
+	hasVpc := terraform.Output(t, opts, "subnet_has_vpc")
 
 	assert.NotEmpty(t, subnetID)
 	assert.NotEmpty(t, subnetACLID)
 	assert.NotEmpty(t, subnetACLRuleID)
 	assert.Equal(t, "true", public)
+	assert.Equal(t, "true", hasVpc)
 }
 
 func genName() string {
 	return fmt.Sprintf("test-subnet-%s", random.UniqueId())
+}
+
+func validateSimple(t *testing.T, opts *terraform.Options) {
+	subnetID := terraform.Output(t, opts, "subnet_id")
+	subnetACLID := terraform.Output(t, opts, "subnet_acl_id")
+	subnetACLRuleID := terraform.Output(t, opts, "subnet_acl_rule_id")
+	hasVpc := terraform.Output(t, opts, "subnet_has_vpc")
+
+	assert.NotEmpty(t, subnetID)
+	assert.Equal(t, "[]", subnetACLID)
+	assert.Equal(t, "[]", subnetACLRuleID)
+	assert.Equal(t, "false", hasVpc)
 }

@@ -46,6 +46,6 @@ func TestNwsSubnetPrivateExample(t *testing.T) {
 		defer terraform.Destroy(t, terraformOptions)
 		terraform.InitAndApply(t, terraformOptions)
 
-		validatePrivate(t, terraformOptions)
+		validateVpcPrivate(t, terraformOptions)
 	}
 }

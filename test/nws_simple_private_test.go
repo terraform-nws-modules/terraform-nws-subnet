@@ -6,15 +6,15 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestNwsSubnetPublicExample(t *testing.T) {
+func TestSubnetSimplePrivateExample(t *testing.T) {
 
 	testCases := []testCaseT{
 		{
 			[]string{genName()},
 			[]string{"10.0.1.100/30"},
 			domain,
-			true,
-			true,
+			false,
+			false,
 			[]string{"80", "31000-31010"},
 		},
 		{
@@ -22,7 +22,7 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 			[]string{"10.0.1.0/30", "10.0.1.10/30"},
 			domain,
 			true,
-			true,
+			false,
 			[]string{"80", "31000-31010", "32000-32010"},
 		},
 	}
@@ -31,7 +31,7 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 		cfg := testCase
 
 		terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-			TerraformDir: "../examples/vpc-single-public",
+			TerraformDir: "../examples/simple-private",
 			// Variables to pass to our Terraform code using -var options
 			Vars: map[string]interface{}{
 				"name":    cfg.name,
@@ -46,6 +46,6 @@ func TestNwsSubnetPublicExample(t *testing.T) {
 		defer terraform.Destroy(t, terraformOptions)
 		terraform.InitAndApply(t, terraformOptions)
 
-		validateVpcPublic(t, terraformOptions)
+		validateSimple(t, terraformOptions)
 	}
 }

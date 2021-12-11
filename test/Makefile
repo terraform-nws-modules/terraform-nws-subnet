@@ -30,4 +30,4 @@ pub:
 	@go test -v -timeout $(TIMEOUT) $(COMMON) nws_vpc_subnet_public_test.go
 
 simple:
-	@go test -v -timeout $(TIMEOUT) $(COMMON)
+	@go test -v -timeout $(TIMEOUT) $(COMMON) nws_simple_private_test.go
