@@ -21,13 +21,13 @@ resource "nws_network" "net" {
 
 // Create ACL resources for Public networks only
 resource "nws_network_acl" "acl" {
-  count  = var.public && var.name != null ? 1 : 0
+  count  = var.has_vpc && var.public && var.name != null ? 1 : 0
   name   = var.acl_name
   vpc_id = var.vpc_id
 }
 
 resource "nws_network_acl_rule" "rule" {
-  count  = var.public && var.name != null ? 1 : 0
+  count  = var.has_vpc && var.public && var.name != null ? 1 : 0
   acl_id = nws_network_acl.acl[0].id
 
   rule {

@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	vpcID  = "75922dcf-daff-4a39-8ed1-4820bf12f134"
+	vpcID  = "fd7a2090-2e34-45b8-9eca-d9d27584475d "
 	domain = "my.local"
 )
 
@@ -19,6 +19,7 @@ type testCaseT struct {
 	cidr        []string
 	domain      string
 	public      bool
+	hasVpc      bool
 	aclPortList []string
 }
 

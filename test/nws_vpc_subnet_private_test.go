@@ -14,6 +14,7 @@ func TestNwsSubnetPrivateExample(t *testing.T) {
 			[]string{"10.0.1.100/30"},
 			domain,
 			false,
+			true,
 			[]string{"80", "31000-31010"},
 		},
 		{
@@ -21,6 +22,7 @@ func TestNwsSubnetPrivateExample(t *testing.T) {
 			[]string{"10.0.1.0/30", "10.0.1.10/30"},
 			domain,
 			false,
+			true,
 			[]string{"80", "31000-31010", "32000-32010"},
 		},
 	}
@@ -32,11 +34,12 @@ func TestNwsSubnetPrivateExample(t *testing.T) {
 			TerraformDir: "../examples/vpc-single-private",
 			// Variables to pass to our Terraform code using -var options
 			Vars: map[string]interface{}{
-				"name":   cfg.name,
-				"cidr":   cfg.cidr,
-				"domain": cfg.domain,
-				"vpc_id": vpcID,
-				"public": cfg.public,
+				"name":    cfg.name,
+				"cidr":    cfg.cidr,
+				"domain":  cfg.domain,
+				"vpc_id":  vpcID,
+				"public":  cfg.public,
+				"has_vpc": cfg.hasVpc,
 			},
 		})
 
