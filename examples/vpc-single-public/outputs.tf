@@ -4,8 +4,13 @@ output "subnet_id" {
 }
 
 output "subnet_public" {
-  description = "Network domain of the new subnet"
+  description = "Is this subnet public ?"
   value       = var.public
+}
+
+output "subnet_has_vpc" {
+  description = "Does this subnect belong to a VPC ?"
+  value       = var.has_vpc
 }
 
 output "subnet_acl_id" {

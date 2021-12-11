@@ -12,11 +12,12 @@ terraform {
 module "subnet" {
   source = "../../src"
 
-  name   = var.name
-  cidr   = var.cidr
-  vpc_id = var.vpc_id
-  domain = var.domain
-  public = var.public
+  name    = var.name
+  cidr    = var.cidr
+  vpc_id  = var.vpc_id
+  domain  = var.domain
+  public  = var.public
+  has_vpc = var.has_vpc
 
   acl_allowed_port_list = var.acl_allowed_port_list
 }

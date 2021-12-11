@@ -22,6 +22,11 @@ variable "public" {
   type        = bool
 }
 
+variable "has_vpc" {
+  description = "Should this subnet belong to a VPC?"
+  type        = bool
+}
+
 variable "acl_allowed_port_list" {
   description = "Port list for allowed ingress traffic"
   type        = list(string)
